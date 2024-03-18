@@ -16,3 +16,6 @@ conda create -n hate python=3.8 -y
 conda activate hate
 pip install -r requirements.txt
 ```
+
+- define the logger
+- define the exception handler
