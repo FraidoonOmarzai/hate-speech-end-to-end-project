@@ -5,7 +5,7 @@ import logging
 logging.basicConfig(level=logging.INFO, format='[%(asctime)s]: %(message)s:')
 
 
-project_name = "hate"
+project_name = "src"
 
 list_of_files = [
     f"{project_name}/components/__init__.py",
