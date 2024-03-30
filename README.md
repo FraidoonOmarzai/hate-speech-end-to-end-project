@@ -8,7 +8,7 @@ touch template.py
 python template.py
 ```
 
-- Define setup.py file
+- define setup.py file
 
 - install the new env and requirements.txt
 ```bash
@@ -32,3 +32,17 @@ pip install -r requirements.txt
     - Model 5: Conv1D
     - Model 6: TensorFlow Hub Pretrained Sentence Encoder
     - Model 7: LSTM (second method)
+
+```bash
+## Workflows
+
+- update the constants
+- updata the artifact_entity
+- update the config_entity
+- update the components
+- update teh pipeline
+- update the dvc.yaml
+```
+
+- **Data Ingestion**
+    - add src/cloud_storage/s3_operations.py   

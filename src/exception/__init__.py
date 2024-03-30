@@ -13,7 +13,7 @@ def error_message_detail(error, error_detail: sys):
 
 
 class CustomException(Exception):
-    """ Custom  Exception Class For Exception Handling
+    """ Custom exception class for handling exceptions with detailed error messages.
         Args:
             error_message: Error message
             error_detail: Error detail
