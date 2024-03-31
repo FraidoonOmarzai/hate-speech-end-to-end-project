@@ -38,8 +38,7 @@ class S3Operation:
 
         try:
             command: str = (
-                f"aws s3 sync {
-                    folder} s3://{bucket_name}/{bucket_folder_name}/ "
+                f"aws s3 sync {folder} s3://{bucket_name}/{bucket_folder_name} "
             )
 
             os.system(command)
@@ -65,8 +64,13 @@ class S3Operation:
             CustomException: If there is an error during the sync operation.
         """
         try:
+            ''' It was not working
             command: str = (
                 f"aws s3 sync s3://{bucket_name}/{bucket_folder_name}/ {folder} "
+            )
+            '''
+            command: str = (
+                f"aws s3 cp s3://{bucket_name}/{bucket_folder_name} {folder} "
             )
 
             os.system(command)

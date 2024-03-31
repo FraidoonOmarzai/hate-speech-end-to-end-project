@@ -40,9 +40,14 @@ pip install -r requirements.txt
 - updata the artifact_entity
 - update the config_entity
 - update the components
-- update teh pipeline
+- update the pipeline
 - update the dvc.yaml
 ```
 
 - **Data Ingestion**
-    - add src/cloud_storage/s3_operations.py   
+    - add s3_operations.py for uploading and downloading files from s3 bucket 
+    - we need to run the below command which allows to configure AWS credentials and settings 
+    ```bash
+    aws configure
+    ```
+    - follow the above workflow to get the data from the S3 bucket
