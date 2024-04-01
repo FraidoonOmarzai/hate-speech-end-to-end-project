@@ -12,19 +12,21 @@ class DataIngestionConfig:
         arificts_dir (str): The directory where artifacts are stored.
         s3_data_folder (str): The folder path within the S3 bucket containing the data.
         bucket_name (str): The name of the S3 bucket.
-        data_path (str): The full path to the data within the artifacts directory.
+        data_ingestion_path (str): The full path to the data within the artifacts directory.
         zip_path (str): The path to the zip file containing the data.
+        unzip_path (str): The path to store the unzip files.
+        imbalanced_data (str): The path to imbalance_data.cvs file.
+        raw_data (str): The path to the raw_data.csv file.
     """
 
     def __init__(self) -> None:
-        self.arificts_dir = ARTIFACTS_DIR
         self.s3_data_folder = S3_DATA_FOLDER
         self.bucket_name = BUCKET_NAME
 
-        self.data_path = os.path.join(
-            self.arificts_dir, 'data_ingestion', self.s3_data_folder
-        )
+        self.data_ingestion_path = os.path.join(
+            DATA_INGESTION_DIR, self.s3_data_folder)
 
-        self.zip_path = os.path.join(
-            self.data_path, 'dataset.zip'
-        )
+        self.zip_path = os.path.join(DATA_INGESTION_DIR, 'dataset.zip')
+        self.unzip_path = os.path.join(DATA_INGESTION_DIR)
+        self.imbalanced_data = os.path.join(DATA_INGESTION_DIR, IMBALANCE_DATA)
+        self.raw_data = os.path.join(DATA_INGESTION_DIR, RAW_DATA)

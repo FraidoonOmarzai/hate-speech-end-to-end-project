@@ -4,6 +4,7 @@ from src.entity.config_entity import DataIngestionConfig
 from src.entity.artifact_entity import DataIngestionArtifact
 from src.cloud_storage.s3_operations import S3Operation
 import sys
+import zipfile
 
 
 class DataIngestion:
@@ -16,25 +17,44 @@ class DataIngestion:
             logging.info("downloading data from S3")
 
             self.s3_operation.sync_folder_from_s3(
-                folder=self.data_ingestion_config.data_path,
+                folder=self.data_ingestion_config.data_ingestion_path,
                 bucket_name=self.data_ingestion_config.bucket_name,
                 bucket_folder_name=self.data_ingestion_config.s3_data_folder
             )
             logging.info('download completed')
+
+        except Exception as e:
+            CustomException(e, sys)
+
+    def unzip_data(self):
+        """function to unzip
+        
+        returns:
+            imbalance data path
+            raw data path
+        """
+        logging.info("unzipping data starting...")
+        try:
+            with zipfile.ZipFile(self.data_ingestion_config.zip_path, 'r') as zip_file:
+                zip_file.extractall(self.data_ingestion_config.unzip_path)
+                
+            return self.data_ingestion_config.imbalanced_data, self.data_ingestion_config.raw_data
         except Exception as e:
             CustomException(e, sys)
 
     def init_data_ingestion(self):
         try:
             logging.info("init_data_ingestion")
-            
+
             self.get_data_from_s3()
-            
-            data_ingestion_artifact:DataIngestionArtifact = DataIngestionArtifact(
-                zip_file=self.data_ingestion_config.zip_path
+            imbalanced_data_path, raw_data_path= self.unzip_data()
+
+            data_ingestion_artifact: DataIngestionArtifact = DataIngestionArtifact(
+                imbalanced_data_path=imbalanced_data_path,
+                raw_data_path=raw_data_path
             )
-            
+
             return data_ingestion_artifact
-        
+
         except Exception as e:
             CustomException(e, sys)
