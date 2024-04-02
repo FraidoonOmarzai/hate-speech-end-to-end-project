@@ -8,6 +8,18 @@ import zipfile
 
 
 class DataIngestion:
+    """Class for ingesting data from S3 and performing necessary operations.
+
+    This class facilitates the process of downloading data from an S3 bucket,
+    unzipping the downloaded data, and creating a data ingestion artifact.
+
+
+    Methods:
+        get_data_from_s3: Downloads data from S3 to the local system.
+        unzip_data: Unzips the downloaded data.
+        init_data_ingestion: Initializes the data ingestion process.
+    """
+
     def __init__(self, data_ingestion_config: DataIngestionConfig):
         self.data_ingestion_config = data_ingestion_config
         self.s3_operation = S3Operation()
@@ -27,17 +39,16 @@ class DataIngestion:
             CustomException(e, sys)
 
     def unzip_data(self):
-        """function to unzip
-        
+        """function to unzip.
+
         returns:
-            imbalance data path
-            raw data path
+            Tuple[str, str]: Paths to the unzipped data files (imbalanced data and raw data).
         """
         logging.info("unzipping data starting...")
         try:
             with zipfile.ZipFile(self.data_ingestion_config.zip_path, 'r') as zip_file:
                 zip_file.extractall(self.data_ingestion_config.unzip_path)
-                
+
             return self.data_ingestion_config.imbalanced_data, self.data_ingestion_config.raw_data
         except Exception as e:
             CustomException(e, sys)
@@ -47,7 +58,7 @@ class DataIngestion:
             logging.info("init_data_ingestion")
 
             self.get_data_from_s3()
-            imbalanced_data_path, raw_data_path= self.unzip_data()
+            imbalanced_data_path, raw_data_path = self.unzip_data()
 
             data_ingestion_artifact: DataIngestionArtifact = DataIngestionArtifact(
                 imbalanced_data_path=imbalanced_data_path,

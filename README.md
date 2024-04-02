@@ -50,4 +50,4 @@ pip install -r requirements.txt
     ```bash
     aws configure
     ```
-    - follow the above workflow to get the data from the S3 bucket
+    - follow the above workflows to get the data from the S3 bucket

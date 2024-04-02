@@ -9,6 +9,16 @@ import sys
 
 
 class TrainingPipeline:
+    """Class representing a training pipeline.
+
+    This class orchestrates the various steps involved in the training pipeline,
+    including data ingestion and further processing.
+
+    Methods:
+        start_data_ingestion: Starts the data ingestion process.
+        run_pipeline: Runs the entire training pipeline.
+    """
+
     def __init__(self) -> None:
         self.data_ingestion_config = DataIngestionConfig()
 

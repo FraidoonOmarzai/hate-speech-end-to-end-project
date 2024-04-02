@@ -3,7 +3,7 @@ import os
 
 
 # Common Constants
-TIMESTAMP: datetime = datetime.now().strftime("%m_%d_%Y_%H_%M_%S")
+TIMESTAMP: datetime = datetime.now().strftime("%d_%m_%Y_%H_%M_%S")
 ARTIFACTS_DIR: str = os.path.join('artifacts', TIMESTAMP)
 BUCKET_NAME: str = 'hatedataset'
 S3_DATA_FOLDER: str = 'dataset.zip'
