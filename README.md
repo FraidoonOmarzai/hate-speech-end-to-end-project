@@ -53,3 +53,18 @@ pip install -r requirements.txt
     - follow the above workflows to get the data from the S3 bucket
 
 - **Data Transformation**
+    - Performing data transformation operations such:
+        - Data loading (df1,df2)
+        - Concatenation of dataframes(df1,df2)
+        - Data Cleaning
+        - Saving transformed data to a file
+    ```bash
+    ## Text Preprocessing
+    - Converting to lower case
+    - Tokenising
+    - Removing stop words
+    - Words stemming
+    - Removing punctuation
+    - Stripping out html tags
+    ```
+    

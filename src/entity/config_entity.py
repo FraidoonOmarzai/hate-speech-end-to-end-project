@@ -9,7 +9,6 @@ class DataIngestionConfig:
     such as directory paths and S3 bucket names.
 
     args:
-        arificts_dir (str): The directory where artifacts are stored.
         s3_data_folder (str): The folder path within the S3 bucket containing the data.
         bucket_name (str): The name of the S3 bucket.
         data_ingestion_path (str): The full path to the data within the artifacts directory.
@@ -33,6 +32,17 @@ class DataIngestionConfig:
 
 
 class DataTransformationConfig:
+    """Data class for configuring data transformation parameters.
+
+    This class provides a convenient way to configure parameters related to data transformation,
+    such as directory paths.
+
+    args:
+        data_transformation_dir (str): The path to data transformation folder.
+        transformed_file (str): The path to sotre the data after transformation.
+    """
+
     def __init__(self):
         self.data_transformation_dir = os.path.join(DATA_TRANSFORM_DIR)
-        self.transformed_file = os.path.join(self.data_transformation_dir, TRANSFORMED_FILE)
+        self.transformed_file = os.path.join(
+            self.data_transformation_dir, TRANSFORMED_FILE)

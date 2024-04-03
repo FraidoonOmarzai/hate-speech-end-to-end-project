@@ -4,8 +4,8 @@ from src.logger import logging
 from src.components.data_ingestion import DataIngestion
 from src.components.data_transformation import DataTransformation
 from src.entity.config_entity import (DataIngestionConfig,
-                                    DataTransformationConfig,)
-from src.entity.artifact_entity import (DataIngestionArtifact, 
+                                      DataTransformationConfig,)
+from src.entity.artifact_entity import (DataIngestionArtifact,
                                         DataTransformationArtifact)
 
 import sys
@@ -15,10 +15,11 @@ class TrainingPipeline:
     """Class representing a training pipeline.
 
     This class orchestrates the various steps involved in the training pipeline,
-    including data ingestion and further processing.
+    including data ingestion, data transformation and further processing.
 
     Methods:
         start_data_ingestion: Starts the data ingestion process.
+        start_data_transformation: Starts the data transformation process.
         run_pipeline: Runs the entire training pipeline.
     """
 
@@ -38,7 +39,7 @@ class TrainingPipeline:
 
         except Exception as e:
             CustomException(e, sys)
-            
+
     def start_data_transformation(self, data_ingestion_artifacts):
         try:
             logging.info("starting data transformation")
@@ -46,7 +47,7 @@ class TrainingPipeline:
                 data_ingestion_artifact=data_ingestion_artifacts,
                 data_transformation_config=self.data_transformation_config
             )
-            
+
             data_transformation_artifacts = data_transformation.init_data_transformation()
             return data_transformation_artifacts
 
@@ -58,9 +59,10 @@ class TrainingPipeline:
         try:
             # data ingestion sections
             data_ingestion_artifact: DataIngestionArtifact = self.start_data_ingestion()
-            
+
             # data Transformation sections
-            data_transformation_artifact: DataTransformationArtifact = self.start_data_transformation(data_ingestion_artifact)
+            data_transformation_artifact: DataTransformationArtifact = self.start_data_transformation(
+                data_ingestion_artifact)
 
         except Exception as e:
             CustomException(e, sys)
