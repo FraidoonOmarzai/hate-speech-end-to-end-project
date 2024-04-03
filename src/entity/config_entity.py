@@ -30,3 +30,9 @@ class DataIngestionConfig:
         self.unzip_path = os.path.join(DATA_INGESTION_DIR)
         self.imbalanced_data = os.path.join(DATA_INGESTION_DIR, IMBALANCE_DATA)
         self.raw_data = os.path.join(DATA_INGESTION_DIR, RAW_DATA)
+
+
+class DataTransformationConfig:
+    def __init__(self):
+        self.data_transformation_dir = os.path.join(DATA_TRANSFORM_DIR)
+        self.transformed_file = os.path.join(self.data_transformation_dir, TRANSFORMED_FILE)

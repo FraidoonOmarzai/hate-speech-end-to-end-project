@@ -13,3 +13,8 @@ S3_DATA_FOLDER: str = 'dataset.zip'
 DATA_INGESTION_DIR: str = os.path.join(ARTIFACTS_DIR, 'DataIngestion')
 IMBALANCE_DATA: str = 'imbalanced_data.csv'
 RAW_DATA: str = 'raw_data.csv'
+
+
+# Data Transformation Constants
+DATA_TRANSFORM_DIR: str = os.path.join(ARTIFACTS_DIR, 'DataTransformation')
+TRANSFORMED_FILE: str = 'df.csv'
