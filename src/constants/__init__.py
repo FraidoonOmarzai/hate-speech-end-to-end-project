@@ -18,3 +18,7 @@ RAW_DATA: str = 'raw_data.csv'
 # Data Transformation Constants
 DATA_TRANSFORM_DIR: str = os.path.join(ARTIFACTS_DIR, 'DataTransformation')
 TRANSFORMED_FILE: str = 'df.csv'
+
+
+# Model Training Constants
+MODEL_TRAINING_DIR: str = os.path.join(ARTIFACTS_DIR, 'ModelTraining')

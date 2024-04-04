@@ -11,3 +11,8 @@ class DataIngestionArtifact:
 @dataclass
 class DataTransformationArtifact:
     df_file: str
+
+
+@dataclass
+class ModelTrainingArtifact:
+    pass

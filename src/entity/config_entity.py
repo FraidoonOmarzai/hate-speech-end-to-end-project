@@ -46,3 +46,8 @@ class DataTransformationConfig:
         self.data_transformation_dir = os.path.join(DATA_TRANSFORM_DIR)
         self.transformed_file = os.path.join(
             self.data_transformation_dir, TRANSFORMED_FILE)
+
+
+class ModelTrainingConfig:
+    def __init__(self) -> None:
+        self.model_training_dir = MODEL_TRAINING_DIR

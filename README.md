@@ -67,4 +67,5 @@ pip install -r requirements.txt
     - Removing punctuation
     - Stripping out html tags
     ```
+- **Model Training**
     
