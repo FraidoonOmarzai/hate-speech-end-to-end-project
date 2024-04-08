@@ -22,3 +22,10 @@ TRANSFORMED_FILE: str = 'df.csv'
 
 # Model Training Constants
 MODEL_TRAINING_DIR: str = os.path.join(ARTIFACTS_DIR, 'ModelTraining')
+TWEET = 'tweet'
+LABEL = 'label'
+MODEL_NAME: str = 'lstm_model.h5'
+# tokenization
+MAX_WORDS: int = 5000
+MAX_LENGTH: int = 300
+# model

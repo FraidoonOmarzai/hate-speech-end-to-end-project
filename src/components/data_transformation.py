@@ -52,7 +52,7 @@ class DataTransformation:
             return df1
 
         except Exception as e:
-            CustomException(e, sys)
+            raise CustomException(e, sys)
 
     def raw_data(self):
         try:
@@ -74,7 +74,7 @@ class DataTransformation:
             return df2
 
         except Exception as e:
-            CustomException(e, sys)
+            raise CustomException(e, sys)
 
     def concat_df1_df2(self):
         try:
@@ -89,7 +89,7 @@ class DataTransformation:
             return df
 
         except Exception as e:
-            CustomException(e, sys)
+            raise CustomException(e, sys)
 
     def data_cleaning(self, txt, stemmer=SnowballStemmer("english"), stop_words=set(stopwords.words('english'))):
         try:
@@ -109,7 +109,7 @@ class DataTransformation:
 
             return ' '.join(filter_words)
         except Exception as e:
-            CustomException(e, sys)
+            raise CustomException(e, sys)
 
     def init_data_transformation(self):
         try:
@@ -130,4 +130,4 @@ class DataTransformation:
 
             return data_transformation_artifacts
         except Exception as e:
-            CustomException(e, sys)
+            raise CustomException(e, sys)

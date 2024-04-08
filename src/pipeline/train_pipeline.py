@@ -3,8 +3,10 @@ from src.logger import logging
 
 from src.components.data_ingestion import DataIngestion
 from src.components.data_transformation import DataTransformation
+from src.components.model_training import ModelTraining
 from src.entity.config_entity import (DataIngestionConfig,
-                                      DataTransformationConfig,)
+                                      DataTransformationConfig,
+                                      ModelTrainingConfig)
 from src.entity.artifact_entity import (DataIngestionArtifact,
                                         DataTransformationArtifact)
 
@@ -26,6 +28,7 @@ class TrainingPipeline:
     def __init__(self) -> None:
         self.data_ingestion_config = DataIngestionConfig()
         self.data_transformation_config = DataTransformationConfig()
+        self.model_training_config = ModelTrainingConfig()
 
     def start_data_ingestion(self):
         try:
@@ -38,7 +41,7 @@ class TrainingPipeline:
             return data_ingestion_artifact
 
         except Exception as e:
-            CustomException(e, sys)
+            raise CustomException(e, sys)
 
     def start_data_transformation(self, data_ingestion_artifacts):
         try:
@@ -52,17 +55,33 @@ class TrainingPipeline:
             return data_transformation_artifacts
 
         except Exception as e:
-            CustomException(e, sys)
+            raise CustomException(e, sys)
+            
+            
+    def start_model_training(self, data_transformation_artifacts):
+        try:
+            model_training = ModelTraining(
+                data_transformer_artifact=data_transformation_artifacts,
+                model_training_config=self.model_training_config
+            )
+            
+            model_training.init_model_training()
+            
+        except Exception as e:
+            raise CustomException(e, sys)
 
     def run_pipeline(self):
         logging.info("running training pipeline")
         try:
-            # data ingestion sections
+            # data ingestion Sections
             data_ingestion_artifact: DataIngestionArtifact = self.start_data_ingestion()
 
-            # data Transformation sections
+            # data Transformation Sections
             data_transformation_artifact: DataTransformationArtifact = self.start_data_transformation(
                 data_ingestion_artifact)
+            
+            # Model Training Sections
+            self.start_model_training(data_transformation_artifact)
 
         except Exception as e:
-            CustomException(e, sys)
+            raise CustomException(e, sys)

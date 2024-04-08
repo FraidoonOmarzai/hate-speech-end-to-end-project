@@ -50,4 +50,9 @@ class DataTransformationConfig:
 
 class ModelTrainingConfig:
     def __init__(self) -> None:
-        self.model_training_dir = MODEL_TRAINING_DIR
+        self.model_training_dir = os.path.join(MODEL_TRAINING_DIR)
+        self.tweet=TWEET
+        self.label = LABEL
+        self.max_words = MAX_WORDS
+        self.max_length = MAX_LENGTH
+        self.training_model_path = os.path.join(self.model_training_dir, MODEL_NAME)

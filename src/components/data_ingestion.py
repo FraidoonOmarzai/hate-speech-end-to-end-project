@@ -36,7 +36,7 @@ class DataIngestion:
             logging.info('download completed')
 
         except Exception as e:
-            CustomException(e, sys)
+            raise CustomException(e, sys)
 
     def unzip_data(self):
         """function to unzip.
@@ -51,7 +51,7 @@ class DataIngestion:
 
             return self.data_ingestion_config.imbalanced_data, self.data_ingestion_config.raw_data
         except Exception as e:
-            CustomException(e, sys)
+            raise CustomException(e, sys)
 
     def init_data_ingestion(self):
         try:
@@ -68,4 +68,4 @@ class DataIngestion:
             return data_ingestion_artifact
 
         except Exception as e:
-            CustomException(e, sys)
+            raise CustomException(e, sys)
