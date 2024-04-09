@@ -15,4 +15,6 @@ class DataTransformationArtifact:
 
 @dataclass
 class ModelTrainingArtifact:
-    pass
+    model_path: str
+    X_test_path: str
+    y_test_path: str

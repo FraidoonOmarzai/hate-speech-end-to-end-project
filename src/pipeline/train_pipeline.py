@@ -8,7 +8,8 @@ from src.entity.config_entity import (DataIngestionConfig,
                                       DataTransformationConfig,
                                       ModelTrainingConfig)
 from src.entity.artifact_entity import (DataIngestionArtifact,
-                                        DataTransformationArtifact)
+                                        DataTransformationArtifact,
+                                        ModelTrainingArtifact)
 
 import sys
 
@@ -65,7 +66,8 @@ class TrainingPipeline:
                 model_training_config=self.model_training_config
             )
             
-            model_training.init_model_training()
+            model_training_artifacts = model_training.init_model_training()
+            return model_training_artifacts
             
         except Exception as e:
             raise CustomException(e, sys)
@@ -81,7 +83,7 @@ class TrainingPipeline:
                 data_ingestion_artifact)
             
             # Model Training Sections
-            self.start_model_training(data_transformation_artifact)
+            model_training_artifacts: ModelTrainingArtifact = self.start_model_training(data_transformation_artifact)
 
         except Exception as e:
             raise CustomException(e, sys)

@@ -25,7 +25,10 @@ MODEL_TRAINING_DIR: str = os.path.join(ARTIFACTS_DIR, 'ModelTraining')
 TWEET = 'tweet'
 LABEL = 'label'
 MODEL_NAME: str = 'lstm_model.h5'
+X_TEST: str =  'X_test.csv'
+Y_TEST: str = 'y_test.csv'
+
 # tokenization
-MAX_WORDS: int = 5000
-MAX_LENGTH: int = 300
+MAX_WORDS: int = 10000
+MAX_LENGTH: int = 50
 # model

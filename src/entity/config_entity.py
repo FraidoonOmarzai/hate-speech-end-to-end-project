@@ -56,3 +56,5 @@ class ModelTrainingConfig:
         self.max_words = MAX_WORDS
         self.max_length = MAX_LENGTH
         self.training_model_path = os.path.join(self.model_training_dir, MODEL_NAME)
+        self.X_test_path = os.path.join(self.model_training_dir, X_TEST)
+        self.y_test_path = os.path.join(self.model_training_dir, Y_TEST)
