@@ -6,7 +6,9 @@ import os
 TIMESTAMP: datetime = datetime.now().strftime("%d_%m_%Y_%H_%M_%S")
 ARTIFACTS_DIR: str = os.path.join('artifacts', TIMESTAMP)
 BUCKET_NAME: str = 'hatedataset'
-S3_DATA_FOLDER: str = 'dataset.zip'
+S3_DATA_FOLDER: str = 'data'
+S3_FILE: str = 'dataset.zip'
+
 
 
 # Data Ingestion Constants

@@ -21,11 +21,12 @@ class DataIngestionConfig:
     def __init__(self) -> None:
         self.s3_data_folder = S3_DATA_FOLDER
         self.bucket_name = BUCKET_NAME
+        self.s3_file = S3_FILE
 
         self.data_ingestion_path = os.path.join(
             DATA_INGESTION_DIR, self.s3_data_folder)
 
-        self.zip_path = os.path.join(DATA_INGESTION_DIR, 'dataset.zip')
+        self.zip_path = os.path.join(DATA_INGESTION_DIR, self.s3_data_folder, self.s3_file)
         self.unzip_path = os.path.join(DATA_INGESTION_DIR)
         self.imbalanced_data = os.path.join(DATA_INGESTION_DIR, IMBALANCE_DATA)
         self.raw_data = os.path.join(DATA_INGESTION_DIR, RAW_DATA)
