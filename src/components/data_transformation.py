@@ -63,11 +63,12 @@ class DataTransformation:
             df2 = df2.drop(['Unnamed: 0', 'count', 'hate_speech',
                            'offensive_language', 'neither'], axis=1)
             # copy the valus of the class 1 into class 0.
-            df2[df2['class'] == 0]['class'] = 1
-            # replace the value of 0 to 1
-            df2["class"].replace({0: 1}, inplace=True)
+            # Let's copy the valus of the class 1 into class 0.
+            class_1_values = df2[df2['class'] == 1]['class'].values
+            class_0_indices = df2[df2['class'] == 0].index
+            df2.loc[class_0_indices, 'class'] = class_1_values[:len(class_0_indices)]
             # Let's replace the value of 2 to 0.
-            df2["class"].replace({2: 0}, inplace=True)
+            df2.replace({'class': {2:0}}, inplace=True)
             # Let's change the name of the 'class' to label
             df2.rename(columns={'class': 'label'}, inplace=True)
 
