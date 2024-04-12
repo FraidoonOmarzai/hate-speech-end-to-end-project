@@ -31,7 +31,7 @@ class TrainingPipeline:
         self.data_transformation_config = DataTransformationConfig()
         self.model_training_config = ModelTrainingConfig()
 
-    def start_data_ingestion(self):
+    def start_data_ingestion(self) -> DataIngestionArtifact:
         try:
             logging.info("starting data ingestion")
             data_ingestion = DataIngestion(
