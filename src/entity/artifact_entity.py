@@ -10,7 +10,7 @@ class DataIngestionArtifact:
 
 @dataclass
 class DataTransformationArtifact:
-    df_file: str
+    tansformed_df_path: str
 
 
 @dataclass

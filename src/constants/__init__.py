@@ -19,18 +19,19 @@ RAW_DATA: str = 'raw_data.csv'
 
 # Data Transformation Constants
 DATA_TRANSFORM_DIR: str = os.path.join(ARTIFACTS_DIR, 'DataTransformation')
-TRANSFORMED_FILE: str = 'df.csv'
+TRANSFORMED_FILE: str = 'transforemd_df.csv'
 
 
 # Model Training Constants
 MODEL_TRAINING_DIR: str = os.path.join(ARTIFACTS_DIR, 'ModelTraining')
-TWEET = 'tweet'
-LABEL = 'label'
-MODEL_NAME: str = 'lstm_model.h5'
+TWEET: str = 'tweet'
+LABEL: str = 'label'
+MODEL_NAME: str = 'model.h5'
 X_TEST: str =  'X_test.csv'
 Y_TEST: str = 'y_test.csv'
 
 # tokenization
 MAX_WORDS: int = 10000
 MAX_LENGTH: int = 50
+
 # model

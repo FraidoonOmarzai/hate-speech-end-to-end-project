@@ -76,14 +76,14 @@ class TrainingPipeline:
         logging.info("running training pipeline")
         try:
             # data ingestion Sections
-            data_ingestion_artifact: DataIngestionArtifact = self.start_data_ingestion()
+            data_ingestion_artifacts: DataIngestionArtifact = self.start_data_ingestion()
 
             # data Transformation Sections
-            data_transformation_artifact: DataTransformationArtifact = self.start_data_transformation(
-                data_ingestion_artifact)
+            data_transformation_artifacts: DataTransformationArtifact = self.start_data_transformation(
+                data_ingestion_artifacts)
             
             # Model Training Sections
-            model_training_artifacts: ModelTrainingArtifact = self.start_model_training(data_transformation_artifact)
+            model_training_artifacts: ModelTrainingArtifact = self.start_model_training(data_transformation_artifacts)
 
         except Exception as e:
             raise CustomException(e, sys)

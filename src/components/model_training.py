@@ -27,7 +27,7 @@ class ModelTraining:
     def data_split(self):
         try:
             logging.info("data splitting...")
-            df = pd.read_csv(self.data_transformer_artifact.df_file)
+            df = pd.read_csv(self.data_transformer_artifact.tansformed_df_path)
             X = df[self.model_training_config.tweet]
             y = df[self.model_training_config.label]
             X_train,X_test,y_train,y_test = train_test_split(
@@ -41,8 +41,7 @@ class ModelTraining:
     def tokenizaiton(self, X_train):
         try:
             logging.info("Applying tokenization on the data")
-            tokenizer = Tokenizer(num_words=self.model_training_config.max_words,
-                                  lower=False)
+            tokenizer = Tokenizer(num_words=self.model_training_config.max_words)
             tokenizer.fit_on_texts(X_train)
             sequences = tokenizer.texts_to_sequences(X_train)
             logging.info(f"converting text to sequences: {sequences}")
@@ -57,7 +56,7 @@ class ModelTraining:
         try:
             X_train,X_test,y_train,y_test = self.data_split()
 
-            tokenizer, sequences_matrix = self.tokenizaiton(X_train)
+            sequences_matrix, tokenizer = self.tokenizaiton(X_train)
             
             logging.info('Initializing model training')
             model_arc = ModelArchitecture()
@@ -78,8 +77,7 @@ class ModelTraining:
             os.makedirs(
                 self.model_training_config.model_training_dir, exist_ok=True)
 
-            pickle.dump(
-                lstm_model, self.model_training_config.training_model_path)
+            lstm_model.save(self.model_training_config.training_model_path)
             
             
             X_test.to_csv(self.model_training_config.X_test_path)
