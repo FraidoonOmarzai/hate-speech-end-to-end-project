@@ -68,4 +68,5 @@ pip install -r requirements.txt
     - Stripping out html tags
     ```
 - **Model Training**
-    
+    - store the the model architecture in `ml/model.py` 
+    - facing with error while tokenizing the raw_data.csv so i just trained the model only on imbalance_data.csv

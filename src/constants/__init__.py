@@ -10,7 +10,6 @@ S3_DATA_FOLDER: str = 'data'
 S3_FILE: str = 'dataset.zip'
 
 
-
 # Data Ingestion Constants
 DATA_INGESTION_DIR: str = os.path.join(ARTIFACTS_DIR, 'DataIngestion')
 IMBALANCE_DATA: str = 'imbalanced_data.csv'
@@ -27,7 +26,7 @@ MODEL_TRAINING_DIR: str = os.path.join(ARTIFACTS_DIR, 'ModelTraining')
 TWEET: str = 'tweet'
 LABEL: str = 'label'
 MODEL_NAME: str = 'model.h5'
-X_TEST: str =  'X_test.csv'
+X_TEST: str = 'X_test.csv'
 Y_TEST: str = 'y_test.csv'
 
 # tokenization
@@ -35,3 +34,5 @@ MAX_WORDS: int = 10000
 MAX_LENGTH: int = 50
 
 # model
+EPOCHS: int = 1
+BATCH_SIZE: int = 32

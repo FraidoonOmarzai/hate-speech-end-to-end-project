@@ -23,6 +23,7 @@ class TrainingPipeline:
     Methods:
         start_data_ingestion: Starts the data ingestion process.
         start_data_transformation: Starts the data transformation process.
+        start_model_training: Starts the model training process.
         run_pipeline: Runs the entire training pipeline.
     """
 
@@ -57,18 +58,17 @@ class TrainingPipeline:
 
         except Exception as e:
             raise CustomException(e, sys)
-            
-            
+
     def start_model_training(self, data_transformation_artifacts):
         try:
             model_training = ModelTraining(
                 data_transformer_artifact=data_transformation_artifacts,
                 model_training_config=self.model_training_config
             )
-            
+
             model_training_artifacts = model_training.init_model_training()
             return model_training_artifacts
-            
+
         except Exception as e:
             raise CustomException(e, sys)
 
@@ -81,9 +81,10 @@ class TrainingPipeline:
             # data Transformation Sections
             data_transformation_artifacts: DataTransformationArtifact = self.start_data_transformation(
                 data_ingestion_artifacts)
-            
+
             # Model Training Sections
-            model_training_artifacts: ModelTrainingArtifact = self.start_model_training(data_transformation_artifacts)
+            model_training_artifacts: ModelTrainingArtifact = self.start_model_training(
+                data_transformation_artifacts)
 
         except Exception as e:
             raise CustomException(e, sys)

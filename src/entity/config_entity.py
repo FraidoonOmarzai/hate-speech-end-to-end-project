@@ -51,6 +51,21 @@ class DataTransformationConfig:
 
 
 class ModelTrainingConfig:
+    """A class to hold configuration parameters for model training.
+
+    Args:
+        - model_training_dir (str): Directory path where the model training data and outputs will be stored.
+        - tweet (str): Name or path of the tweet data.
+        - label (str): Name or path of the label data.
+        - max_words (int): Maximum number of words to consider in the tokenization process.
+        - max_length (int): Maximum length of a sequence to consider.
+        - training_model_path (str): Path where the trained model will be saved.
+        - X_test_path (str): Path where the test input data (features) will be stored.
+        - y_test_path (str): Path where the test output data (labels) will be stored.
+        - epochs (int): Number of epochs (iterations over the entire dataset) to train the model.
+        - batch_size (int): Number of samples processed before the model is updated.
+    """
+
     def __init__(self) -> None:
         self.model_training_dir = os.path.join(MODEL_TRAINING_DIR)
         self.tweet = TWEET
@@ -61,3 +76,5 @@ class ModelTrainingConfig:
             self.model_training_dir, MODEL_NAME)
         self.X_test_path = os.path.join(self.model_training_dir, X_TEST)
         self.y_test_path = os.path.join(self.model_training_dir, Y_TEST)
+        self.epochs = EPOCHS
+        self.batch_size = BATCH_SIZE
