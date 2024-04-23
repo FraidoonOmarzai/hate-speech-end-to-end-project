@@ -36,3 +36,8 @@ MAX_LENGTH: int = 50
 # model
 EPOCHS: int = 1
 BATCH_SIZE: int = 32
+
+
+# Model Evaluation Constants
+MODEL_EVALUATION_DIR = os.path.join(ARTIFACTS_DIR, 'ModelEvaluation')
+

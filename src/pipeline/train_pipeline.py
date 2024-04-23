@@ -4,12 +4,15 @@ from src.logger import logging
 from src.components.data_ingestion import DataIngestion
 from src.components.data_transformation import DataTransformation
 from src.components.model_training import ModelTraining
+from src.components.model_evaluation import ModelEvaluation
 from src.entity.config_entity import (DataIngestionConfig,
                                       DataTransformationConfig,
-                                      ModelTrainingConfig)
+                                      ModelTrainingConfig,
+                                      ModelEvaluationConfig)
 from src.entity.artifact_entity import (DataIngestionArtifact,
                                         DataTransformationArtifact,
-                                        ModelTrainingArtifact)
+                                        ModelTrainingArtifact,
+                                        ModelEvaluationArtifact)
 
 import sys
 
@@ -31,6 +34,7 @@ class TrainingPipeline:
         self.data_ingestion_config = DataIngestionConfig()
         self.data_transformation_config = DataTransformationConfig()
         self.model_training_config = ModelTrainingConfig()
+        self.model_evaluation_config = ModelEvaluationConfig()
 
     def start_data_ingestion(self) -> DataIngestionArtifact:
         try:
@@ -71,6 +75,20 @@ class TrainingPipeline:
 
         except Exception as e:
             raise CustomException(e, sys)
+        
+        
+    def start_model_evaluation(self, model_training_artifacts):
+        try:
+            model_evaluation = ModelEvaluation(
+                model_training_artifacts=model_training_artifacts,
+                model_evaluation_config=self.model_evaluation_config
+            )
+
+            model_evaluation_artifacts = model_evaluation.init_model_evaluation()
+            return model_evaluation_artifacts
+
+        except Exception as e:
+            raise CustomException(e, sys)
 
     def run_pipeline(self):
         logging.info("running training pipeline")
@@ -85,6 +103,11 @@ class TrainingPipeline:
             # Model Training Sections
             model_training_artifacts: ModelTrainingArtifact = self.start_model_training(
                 data_transformation_artifacts)
+            
+            
+            # Model Evaluation Sections
+            accuracy = self.start_model_evaluation(model_training_artifacts)
+            print(accuracy)
 
         except Exception as e:
             raise CustomException(e, sys)

@@ -78,3 +78,9 @@ class ModelTrainingConfig:
         self.y_test_path = os.path.join(self.model_training_dir, Y_TEST)
         self.epochs = EPOCHS
         self.batch_size = BATCH_SIZE
+
+
+class ModelEvaluationConfig:
+    def __init__(self):
+        self.model_evaluation_dir = os.path.join(MODEL_EVALUATION_DIR)
+        
