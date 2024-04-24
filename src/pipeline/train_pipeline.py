@@ -27,6 +27,7 @@ class TrainingPipeline:
         start_data_ingestion: Starts the data ingestion process.
         start_data_transformation: Starts the data transformation process.
         start_model_training: Starts the model training process.
+        start_model_evaluation: Starts the model evaluation process.
         run_pipeline: Runs the entire training pipeline.
     """
 
@@ -107,7 +108,6 @@ class TrainingPipeline:
             
             # Model Evaluation Sections
             model_evaluation_artifacts: ModelEvaluationArtifact = self.start_model_evaluation(model_training_artifacts)
-            print(model_evaluation_artifacts)
 
         except Exception as e:
             raise CustomException(e, sys)

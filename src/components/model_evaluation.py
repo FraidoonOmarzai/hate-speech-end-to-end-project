@@ -15,6 +15,32 @@ from sklearn.metrics import confusion_matrix
 
 
 class ModelEvaluation:
+    """
+    Class to perform evaluation of a trained model based on provided artifacts and configuration.
+
+    Attributes:
+        model_training_artifacts (ModelTrainingArtifact): An instance of ModelTrainingArtifact containing paths to model-related artifacts.
+        model_evaluation_config (ModelEvaluationConfig): An instance of ModelEvaluationConfig containing configuration for model evaluation.
+        s3operation (S3Operation): An instance of S3Operation for interacting with AWS S3 storage.
+
+    Methods:
+        evaluation(): 
+            Perform evaluation of the trained model using test data and calculate accuracy.
+            Returns:
+                float: Accuracy of the model.
+
+        get_best_model_from_cloud():
+            Retrieve the best model from cloud storage based on configuration.
+            Returns:
+                str: Path to the retrieved best model.
+
+        init_model_evaluation():
+            Initialize the model evaluation process by loading the trained model, performing evaluation, 
+            fetching the best model from cloud storage, comparing accuracies, and determining if the trained model is accepted.
+            Returns:
+                ModelEvaluationArtifact: An instance of ModelEvaluationArtifact containing evaluation results.
+    """
+
     def __init__(self,
                  model_training_artifacts: ModelTrainingArtifact,
                  model_evaluation_config: ModelEvaluationConfig):
@@ -89,8 +115,6 @@ class ModelEvaluation:
             logging.info("Loading currently trained model")
             trained_model = keras.models.load_model(
                 self.model_training_artifacts.model_path)
-            with open('tokenizer.pickle', 'rb') as tex_vec:
-                load_tokenizer = pickle.load(tex_vec)
 
             trained_model_accuracy = self.evaluation()
 
@@ -102,10 +126,10 @@ class ModelEvaluation:
             if os.path.isfile(best_model_path) is False:
                 is_model_accepted = True
                 logging.info(
-                    "glcoud storage model is false and currently trained model accepted is true")
+                    "aws cloud storage model is false and currently trained model accepted is true")
 
             else:
-                logging.info("Load best model fetched from gcloud storage")
+                logging.info("Load best model fetched from aws cloud storage")
                 best_model = keras.models.load_model(best_model_path)
                 best_model_accuracy = self.evaluation()
 

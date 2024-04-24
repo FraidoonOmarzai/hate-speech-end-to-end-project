@@ -81,9 +81,24 @@ class ModelTrainingConfig:
 
 
 class ModelEvaluationConfig:
+    """A class to hold configuration parameters for model evaluation.
+
+    Attributes:
+        model_evaluation_dir (str): Directory path for model evaluation artifacts.
+        best_model_path (str): Path to the directory where the best model will be stored.
+        bucket_name (str): Name of the cloud storage bucket.
+        best_model (str): Directory name for the best model within the cloud storage.
+        model_name (str): Name of the model.
+
+    Methods:
+        __init__():
+            Initialize ModelEvaluationConfig with default or provided settings.
+    """
+
     def __init__(self):
         self.model_evaluation_dir = os.path.join(MODEL_EVALUATION_DIR)
-        self.best_model_path = os.path.join(self.model_evaluation_dir, BEST_MODEL_DIR)
+        self.best_model_path = os.path.join(
+            self.model_evaluation_dir, BEST_MODEL_DIR)
         self.bucket_name = BUCKET_NAME
         self.best_model = BEST_MODEL_DIR
         self.model_name = MODEL_NAME
