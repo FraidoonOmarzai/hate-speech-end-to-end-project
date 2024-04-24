@@ -106,8 +106,8 @@ class TrainingPipeline:
             
             
             # Model Evaluation Sections
-            accuracy = self.start_model_evaluation(model_training_artifacts)
-            print(accuracy)
+            model_evaluation_artifacts: ModelEvaluationArtifact = self.start_model_evaluation(model_training_artifacts)
+            print(model_evaluation_artifacts)
 
         except Exception as e:
             raise CustomException(e, sys)

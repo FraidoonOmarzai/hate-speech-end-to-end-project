@@ -23,4 +23,4 @@ class ModelTrainingArtifact:
 
 @dataclass
 class ModelEvaluationArtifact:
-    pass
+    is_model_accepted: str
