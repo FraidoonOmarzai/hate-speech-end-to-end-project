@@ -23,4 +23,9 @@ class ModelTrainingArtifact:
 
 @dataclass
 class ModelEvaluationArtifact:
-    is_model_accepted: str
+    is_model_accepted: bool
+
+
+@dataclass
+class ModelPusherArtifact:
+    bucket_name: str

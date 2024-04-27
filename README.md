@@ -74,3 +74,5 @@ pip install -r requirements.txt
 
 - **Model Evaluation**
 
+- **Model Pushing**
+    - our goal is to push the best model to AWS cloud and store in S3 bucket

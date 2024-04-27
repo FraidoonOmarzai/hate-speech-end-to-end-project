@@ -102,3 +102,9 @@ class ModelEvaluationConfig:
         self.bucket_name = BUCKET_NAME
         self.best_model = BEST_MODEL_DIR
         self.model_name = MODEL_NAME
+
+
+class ModelPusherConfig:
+    def __init__(self):
+        self.bucket_name = BUCKET_NAME
+        self.best_model_dir = BEST_MODEL_DIR
