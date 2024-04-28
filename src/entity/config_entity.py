@@ -97,14 +97,24 @@ class ModelEvaluationConfig:
 
     def __init__(self):
         self.model_evaluation_dir = os.path.join(MODEL_EVALUATION_DIR)
-        self.best_model_path = os.path.join(
-            self.model_evaluation_dir, BEST_MODEL_DIR)
         self.bucket_name = BUCKET_NAME
         self.best_model = BEST_MODEL_DIR
         self.model_name = MODEL_NAME
 
 
 class ModelPusherConfig:
+    """A class to hold configuration parameters for model pusher.
+
+    Attributes:
+        bucket_name (str): Name of the cloud storage bucket.
+        best_model (str): Directory name for the best model within the cloud storage.
+        model_name (str): Name of the model.
+
+    Methods:
+        __init__():
+            Initialize ModelPusherConfig with default or provided settings.
+    """
+
     def __init__(self):
         self.bucket_name = BUCKET_NAME
         self.best_model_dir = BEST_MODEL_DIR

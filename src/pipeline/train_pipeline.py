@@ -81,8 +81,7 @@ class TrainingPipeline:
 
         except Exception as e:
             raise CustomException(e, sys)
-        
-        
+
     def start_model_evaluation(self, model_training_artifacts):
         try:
             model_evaluation = ModelEvaluation(
@@ -96,7 +95,6 @@ class TrainingPipeline:
         except Exception as e:
             raise CustomException(e, sys)
 
-
     def start_model_pusher(self, model_training_artifacts):
         try:
             model_pusher = ModelPusher(
@@ -105,7 +103,7 @@ class TrainingPipeline:
             )
             model_pusher_artifacts = model_pusher.init_model_pusher()
             return model_pusher_artifacts
-        
+
         except Exception as e:
             raise CustomException(e, sys)
 
@@ -113,27 +111,32 @@ class TrainingPipeline:
         logging.info("running training pipeline")
         try:
             # data ingestion Sections
+            print("<====================Data Ingestions===========================>")
             data_ingestion_artifacts: DataIngestionArtifact = self.start_data_ingestion()
 
             # data Transformation Sections
+            print("<====================Data Transformation===========================>")
             data_transformation_artifacts: DataTransformationArtifact = self.start_data_transformation(
                 data_ingestion_artifacts)
 
             # Model Training Sections
+            print("<====================Model Training===========================>")
             model_training_artifacts: ModelTrainingArtifact = self.start_model_training(
                 data_transformation_artifacts)
-            
-            
+
             # Model Evaluation Sections
-            model_evaluation_artifacts: ModelEvaluationArtifact = self.start_model_evaluation(model_training_artifacts)
-            print(model_evaluation_artifacts)
-            
+            print("<====================Model Evaluation===========================>")
+            model_evaluation_artifacts: ModelEvaluationArtifact = self.start_model_evaluation(
+                model_training_artifacts)
+
             if not model_evaluation_artifacts.is_model_accepted:
-                raise Exception("Trained model is not better than the best model")
-            
-            
+                raise Exception(
+                    "Trained model is not better than the best model")
+
             # Model Pushing Sections
-            model_pusher_artifacts: ModelPusherArtifact = self.start_model_pusher(model_training_artifacts)
+            print("<====================Model Pusher===========================>")
+            model_pusher_artifacts: ModelPusherArtifact = self.start_model_pusher(
+                model_training_artifacts)
 
         except Exception as e:
             raise CustomException(e, sys)

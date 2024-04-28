@@ -93,15 +93,16 @@ class ModelEvaluation:
 
     def get_best_model_from_cloud(self):
         try:
+            logging.info("getting best model from cloud...")
             os.makedirs(
-                self.model_evaluation_config.best_model_path, exist_ok=True)
+                self.model_evaluation_config.model_evaluation_dir, exist_ok=True)
             self.s3operation.sync_folder_from_s3(
-                folder=self.model_evaluation_config.best_model_path,
+                folder=self.model_evaluation_config.model_evaluation_dir,
                 bucket_name=self.model_evaluation_config.bucket_name,
                 bucket_folder_name=self.model_evaluation_config.best_model
             )
 
-            best_model_path_dir = os.path.join(self.model_evaluation_config.best_model_path,
+            best_model_path_dir = os.path.join(self.model_evaluation_config.model_evaluation_dir,
                                                self.model_evaluation_config.model_name)
 
             return best_model_path_dir
