@@ -42,3 +42,8 @@ BATCH_SIZE: int = 32
 MODEL_EVALUATION_DIR = os.path.join(ARTIFACTS_DIR, 'ModelEvaluation')
 BEST_MODEL_DIR: str = 'best_model'
 MODEL_NAME: str = 'model.h5'
+
+
+# app.py Constants
+APP_HOST = "0.0.0.0"
+APP_PORT = 8080

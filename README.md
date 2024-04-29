@@ -76,3 +76,8 @@ pip install -r requirements.txt
 
 - **Model Pushing**
     - our goal is to push the best model to AWS cloud and store in S3 bucket
+
+
+- **Prediction Pipeline**
+    - adding code to `pipepline/prediction_pipeline.py`
+    - add code to app.py

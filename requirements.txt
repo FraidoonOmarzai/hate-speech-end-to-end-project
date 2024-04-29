@@ -6,5 +6,7 @@ seaborn
 nltk
 scikit-learn
 bs4
+fastapi
+uvicorn
 
 -e .
