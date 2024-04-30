@@ -40,7 +40,7 @@ class ModelTraining:
         try:
             logging.info("data splitting...")
             df = pd.read_csv(self.data_transformer_artifact.tansformed_df_path)
-            X = df[self.model_training_config.tweet]
+            X = df[self.model_training_config.tweet].astype(str)
             y = df[self.model_training_config.label]
             X_train, X_test, y_train, y_test = train_test_split(
                 X, y, random_state=42)
@@ -70,7 +70,7 @@ class ModelTraining:
         try:
             X_train, X_test, y_train, y_test = self.data_split()
 
-            sequences_matrix, tokenizer = self.tokenizaiton(X_train)
+            sequences_matrix, tokenizer = self.tokenizaiton(X_train=X_train)
 
             logging.info('Initializing model training')
             model_arc = ModelArchitecture()

@@ -106,9 +106,9 @@ class ModelPusherConfig:
     """A class to hold configuration parameters for model pusher.
 
     Attributes:
+        model_train_dir (str): Path to the training directory.
         bucket_name (str): Name of the cloud storage bucket.
         best_model (str): Directory name for the best model within the cloud storage.
-        model_name (str): Name of the model.
 
     Methods:
         __init__():
@@ -116,5 +116,6 @@ class ModelPusherConfig:
     """
 
     def __init__(self):
+        self.model_training_dir = os.path.join(MODEL_TRAINING_DIR)
         self.bucket_name = BUCKET_NAME
         self.best_model_dir = BEST_MODEL_DIR

@@ -9,9 +9,18 @@ import pandas as pd
 
 import re
 import string
+# import nltk
+# from nltk.corpus import stopwords
+# nltk.download('stopwords')
+
+
 import nltk
 from nltk.corpus import stopwords
+from nltk import SnowballStemmer
+from nltk.tokenize import word_tokenize
+from bs4 import BeautifulSoup
 nltk.download('stopwords')
+nltk.download('punkt')
 
 
 class DataTransformation:
@@ -78,6 +87,35 @@ class DataTransformation:
         except Exception as e:
             raise CustomException(e, sys)
 
+    def concat_df1_df2(self):
+        try:
+            logging.info('inside concat_df1_df2 function')
+            df1 = self.imbalanced_data()
+            df2 = self.raw_data()
+
+            # Let's concatinate both the data into a single data frame.
+            frame = [df1, df2]
+            df = pd.concat(frame)
+            return df
+        except Exception as e:
+            CustomException(e, sys)
+
+    def data_cleaning(self, txt, stemmer=SnowballStemmer("english"), stop_words=set(stopwords.words('english'))):
+        try:
+            # remove html tags
+            soup = BeautifulSoup(txt, 'html.parser')
+            clean_text = soup.get_text()
+            # convert to lower case and splits up the words
+            words = word_tokenize(clean_text.lower())
+            filter_words = []
+            for word in words:
+                # removing the stop words and punctuation
+                if word not in stop_words and word.isalpha():
+                    filter_words.append(stemmer.stem(word))  # words stemming
+            return ' '.join(filter_words)
+        except Exception as e:
+            CustomException(e, sys)
+
     def data_cleaning_1(self, words):
 
         try:
@@ -107,12 +145,9 @@ class DataTransformation:
         try:
             logging.info('init_data_transformation starting')
             # load the concatenated data [df1, df2]
-            # df = self.concat_df1_df2()
-
-            df = self.imbalanced_data()
-            # df= self.raw_data()
-            # apply the data cleaning
-            df['tweet'] = df['tweet'].apply(self.data_cleaning_1)
+            df = self.concat_df1_df2()
+            # df['tweet'] = df['tweet'].apply(self.data_cleaning_1)
+            df['tweet'] = df['tweet'].apply(self.data_cleaning)
 
             os.makedirs(
                 self.data_transformation_config.data_transformation_dir, exist_ok=True)

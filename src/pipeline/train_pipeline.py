@@ -135,8 +135,7 @@ class TrainingPipeline:
 
             # Model Pushing Sections
             print("<====================Model Pusher===========================>")
-            model_pusher_artifacts: ModelPusherArtifact = self.start_model_pusher(
-                model_training_artifacts)
+            model_pusher_artifacts: ModelPusherArtifact = self.start_model_pusher()
 
         except Exception as e:
             raise CustomException(e, sys)

@@ -81,3 +81,10 @@ pip install -r requirements.txt
 - **Prediction Pipeline**
     - adding code to `pipepline/prediction_pipeline.py`
     - add code to app.py
+
+
+- **circleci**
+    - In this project i will be using circleci for CI/CD
+    **Steps:**
+    - create .circleci file
+    - 

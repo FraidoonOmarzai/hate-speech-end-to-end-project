@@ -62,6 +62,8 @@ class PredictionPipeline:
                 load_tokenizer = pickle.load(handle)
 
             text = self.data_transformation.data_cleaning_1(text)
+            text = self.data_transformation.data_cleaning(text)
+
             text = [text]
             # print(text)
             seq = load_tokenizer.texts_to_sequences(text)
@@ -87,4 +89,4 @@ class PredictionPipeline:
             logging.info("Prediction done")
             return predicted_text
         except Exception as e:
-            raise CustomException(e, sys) from e
+            raise CustomException(e, sys)
