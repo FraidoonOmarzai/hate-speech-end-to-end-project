@@ -83,8 +83,12 @@ pip install -r requirements.txt
     - add code to app.py
 
 
-- **circleci**
-    - In this project i will be using circleci for CI/CD
-    **Steps:**
-    - create .circleci file
-    - 
+- **Docker**
+    - define the docker file
+    - bulid and run the docker image
+    ```bash
+    docker build -t nlp-app .  # build docker image
+    docker ps   
+    docker images
+    docker run -p 8080:8080 nlp-app
+    ```
