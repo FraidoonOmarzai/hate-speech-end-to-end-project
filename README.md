@@ -92,3 +92,19 @@ pip install -r requirements.txt
     docker images
     docker run -p 8080:8080 nlp-app
     ```
+
+- **Deploy to AWS**
+    - In this project i will be using circleci for CI/CD
+    - Setup circleci
+    - ASW Setup
+        - create IAM
+        - create EC2 -> virtual machine
+        - create ECR -> save docker image in aws
+    **Steps:**
+    - for circleci setup go to the circleci_setup.sh file for instructions and run all the commands in ec2
+    - create .circleci dir and add config.yaml file to it
+    - add them inside environment variables in circileci
+        - AWS_ACCESS_KEY_ID
+        - AWS_SECRET_ACCESS_KEY
+        - AWS_REGION
+        - AWS_ECR_REGISTRY_ID
