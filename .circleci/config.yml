@@ -26,7 +26,7 @@ jobs:
 
   continuous-delivery:
     machine: true
-    resource_class: fraidoon/hatespeech
+    resource_class: medium
     steps:
       - aws-cli/setup
 
@@ -34,7 +34,7 @@ jobs:
           name: auth to aws ecr
           command: aws ecr get-login-password --region eu-west-2 | docker login --username AWS --password-stdin 851725628730.dkr.ecr.eu-west-2.amazonaws.com
           
-          
+    
 
       - run:
           name: pull image from private repository
