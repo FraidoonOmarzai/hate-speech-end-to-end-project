@@ -103,3 +103,6 @@ sudo apt install unzip
 unzip awscliv2.zip
 sudo ./aws/install
 sudo ./aws/install --bin-dir /usr/local/bin --install-dir /usr/local/aws-cli --update
+
+
+## Completed successfully
