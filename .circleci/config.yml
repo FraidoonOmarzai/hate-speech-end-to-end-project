@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: circleci/3.8-slim-buster # Change to the base image your project uses
+      - image: circleci/3.8 # Change to the base image your project uses
     steps:
       - checkout
 
