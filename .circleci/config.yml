@@ -3,36 +3,38 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: circleci/python:3.8-slim-buster  # Change to the base image your project uses
+      - image: circleci/python:3.8  # Changed to a more general and commonly available tag
     steps:
       - checkout
 
-      # Setup Docker
+      # Setup Docker environment
       - setup_remote_docker:
           version: 20.10.7
-
-      # Install Docker client
-      - run:
-          name: Install Docker client
-          command: |
-            sudo apt-get update
-            sudo apt-get install -y docker-ce-cli
 
       # Build Docker image
       - run:
           name: Build Docker image
-          command: docker build -t fraidoonjan/nlp-app:latest .
+          command: docker build -t $DOCKERHUB_USERNAME/nlp-app:latest .
+
+      # Debug: List Docker images
+      - run:
+          name: List Docker images
+          command: docker images
 
       # Log in to Docker Hub
       - run:
           name: Login to Docker Hub
           command: |
             echo $DOCKERHUB_PASSWORD | docker login -u $DOCKERHUB_USERNAME --password-stdin
+      # Debug: Confirm Docker login
+      - run:
+          name: Confirm Docker login
+          command: docker info
 
       # Push Docker image to Docker Hub
       - run:
           name: Push Docker image
-          command: docker push fraidoonjan/nlp-app:latest
+          command: docker push $DOCKERHUB_USERNAME/nlp-app:latest
 
 workflows:
   version: 2
