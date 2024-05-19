@@ -61,7 +61,7 @@ class PredictionPipeline:
             with open('tokenizer.pickle', 'rb') as handle:
                 load_tokenizer = pickle.load(handle)
 
-            text = self.data_transformation.data_cleaning_1(text)
+            # text = self.data_transformation.data_cleaning_1(text)
             text = self.data_transformation.data_cleaning(text)
 
             text = [text]
